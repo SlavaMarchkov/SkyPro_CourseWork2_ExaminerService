@@ -1,9 +1,11 @@
 package pro.sky.course2.examinerservice.services;
 
+import org.springframework.stereotype.Service;
 import pro.sky.course2.examinerservice.models.Question;
 
 import java.util.*;
 
+@Service
 public class JavaQuestionService implements QuestionService {
 
     private final Set<Question> questions;
