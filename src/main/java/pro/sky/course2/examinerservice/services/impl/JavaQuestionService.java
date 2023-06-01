@@ -1,7 +1,8 @@
-package pro.sky.course2.examinerservice.services;
+package pro.sky.course2.examinerservice.services.impl;
 
 import org.springframework.stereotype.Service;
 import pro.sky.course2.examinerservice.models.Question;
+import pro.sky.course2.examinerservice.services.QuestionService;
 
 import java.util.*;
 
