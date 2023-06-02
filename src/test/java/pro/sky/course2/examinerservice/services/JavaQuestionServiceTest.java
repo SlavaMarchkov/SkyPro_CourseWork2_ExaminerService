@@ -80,6 +80,13 @@ class JavaQuestionServiceTest {
     }
 
     @Test
+    @DisplayName("Должен подтвердить, что коллекция не равна NULL")
+    void getAllNotNullTest() {
+        assertThat(service.getAll())
+                .isNotNull();
+    }
+
+    @Test
     @DisplayName("Должен получить случайный вопрос")
     void getRandomQuestionTest() {
         Question random = service.getRandomQuestion();
