@@ -11,7 +11,7 @@ import pro.sky.course2.examinerservice.services.QuestionService;
 import java.util.Collection;
 
 @RestController
-@RequestMapping(path = "/exam/java")
+@RequestMapping(path = "/java")
 public class JavaQuestionController {
 
     private final QuestionService service;

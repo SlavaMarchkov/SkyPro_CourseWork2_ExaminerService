@@ -10,13 +10,11 @@ import pro.sky.course2.examinerservice.services.QuestionService;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
 
     private final QuestionService questionService;
-    private Random random = new Random();
 
     @Autowired
     public ExaminerServiceImpl(QuestionService questionService) {
@@ -25,7 +23,7 @@ public class ExaminerServiceImpl implements ExaminerService {
 
     @Override
     public Collection<Question> getQuestions(int amount) {
-        if (questionService.getAll().size() > amount) {
+        if (questionService.getAll().size() < amount) {
             throw new RequestOverSizeException("Запрошено большее количество вопросов, чем хранится в сервисе");
         }
         List<Question> questionList = new ArrayList<>();
