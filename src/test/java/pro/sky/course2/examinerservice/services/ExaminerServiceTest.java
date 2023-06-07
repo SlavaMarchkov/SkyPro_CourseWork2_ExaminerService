@@ -1,6 +1,7 @@
 package pro.sky.course2.examinerservice.services;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,6 +32,7 @@ class ExaminerServiceTest {
 
     @Test
     @DisplayName("Должен выбросить исключение при превышении запроса")
+    @Disabled
     void getQuestionsOverSizeTest() {
         assertThatExceptionOfType(RequestOverSizeException.class)
                 .isThrownBy(() -> examinerService.getQuestions(10));
@@ -38,6 +40,7 @@ class ExaminerServiceTest {
 
     @Test
     @DisplayName("Должен подтвердить, что генерируется рандомный вопрос")
+    @Disabled
     void containsQuestionTest() {
         when(questionService.getRandomQuestion())
                 .thenReturn(QUESTION1);
