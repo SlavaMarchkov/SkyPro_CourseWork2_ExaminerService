@@ -1,6 +1,7 @@
 package pro.sky.course2.examinerservice.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import pro.sky.course2.examinerservice.exceptions.RequestOverSizeException;
 import pro.sky.course2.examinerservice.models.Question;
@@ -17,7 +18,7 @@ public class ExaminerServiceImpl implements ExaminerService {
     private final QuestionService questionService;
 
     @Autowired
-    public ExaminerServiceImpl(QuestionService questionService) {
+    public ExaminerServiceImpl(@Qualifier("mathQuestionService") QuestionService questionService) {
         this.questionService = questionService;
     }
 
