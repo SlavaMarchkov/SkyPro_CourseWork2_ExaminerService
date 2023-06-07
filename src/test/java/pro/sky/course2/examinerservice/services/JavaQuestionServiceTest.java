@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pro.sky.course2.examinerservice.models.Question;
+import pro.sky.course2.examinerservice.repository.JavaQuestionRepository;
 import pro.sky.course2.examinerservice.services.impl.JavaQuestionService;
 
 import java.util.stream.Stream;
@@ -13,7 +14,7 @@ import static pro.sky.course2.examinerservice.services.constants.QuestionConstan
 
 class JavaQuestionServiceTest {
 
-    private final QuestionService service = new JavaQuestionService();
+    private final QuestionService service = new JavaQuestionService(new JavaQuestionRepository());
 
     @BeforeEach
     void setUp() {

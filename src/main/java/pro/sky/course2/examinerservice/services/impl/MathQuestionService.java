@@ -1,7 +1,9 @@
 package pro.sky.course2.examinerservice.services.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pro.sky.course2.examinerservice.models.Question;
+import pro.sky.course2.examinerservice.repository.MathQuestionRepository;
 import pro.sky.course2.examinerservice.services.QuestionService;
 
 import java.util.*;
@@ -9,41 +11,39 @@ import java.util.*;
 @Service
 public class MathQuestionService implements QuestionService {
 
-    private final Set<Question> questions;
+    private final MathQuestionRepository mathQuestionRepository;
     private final Random random = new Random();
 
-    public MathQuestionService() {
-        this.questions = new HashSet<>();
+    @Autowired
+    public MathQuestionService(final MathQuestionRepository mathQuestionRepository) {
+        this.mathQuestionRepository = mathQuestionRepository;
     }
 
     @Override
     public Question add(String question, String answer) {
         Question q = new Question(question, answer);
-        questions.add(q);
-        return q;
+        return mathQuestionRepository.add(q);
     }
 
     @Override
     public Question add(Question question) {
-        questions.add(question);
-        return question;
+        return mathQuestionRepository.add(question);
     }
 
     @Override
     public Question remove(Question question) {
-        questions.remove(question);
-        return question;
+        return mathQuestionRepository.remove(question);
     }
 
     @Override
     public Collection<Question> getAll() {
-        return Collections.unmodifiableSet(questions);
+        return mathQuestionRepository.getAll();
     }
 
     @Override
     public Question getRandomQuestion() {
-        int randomIndex = random.nextInt(questions.size());
-        List<Question> questionList = new ArrayList<>(questions);
+        int randomIndex = random.nextInt(mathQuestionRepository.getAll().size());
+        List<Question> questionList = new ArrayList<>(mathQuestionRepository.getAll());
         return questionList.get(randomIndex);
     }
 
