@@ -1,6 +1,7 @@
 package pro.sky.course2.examinerservice.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import pro.sky.course2.examinerservice.models.Question;
 import pro.sky.course2.examinerservice.services.ExaminerService;
@@ -19,34 +20,34 @@ public class ExaminerServiceImpl implements ExaminerService {
     private final Random random = new Random();
 
     @Autowired
-    public ExaminerServiceImpl(final QuestionService javaQuestionService,
-                               final QuestionService mathQuestionService) {
+    public ExaminerServiceImpl(@Qualifier("javaQuestionService") final QuestionService javaQuestionService,
+                               @Qualifier("mathQuestionService") final QuestionService mathQuestionService) {
         this.javaQuestionService = javaQuestionService;
         this.mathQuestionService = mathQuestionService;
     }
 
     @Override
     public Collection<Question> getQuestions() {
-        int amountJava = random.nextInt(javaQuestionService.getAll().size());
-        int amountMath = random.nextInt(mathQuestionService.getAll().size());
+        List<Question> examQuestions = new ArrayList<>();
 
-        List<Question> questionList = new ArrayList<>();
+        int amountJava = random.nextInt(0, javaQuestionService.getAll().size() + 1);
+        int amountMath = random.nextInt(0, mathQuestionService.getAll().size() + 1);
 
-        addRandomQuestionToQuestionList(javaQuestionService, questionList, amountJava);
-        addRandomQuestionToQuestionList(mathQuestionService, questionList, amountMath);
+        while (examQuestions.size() < (amountJava + amountMath)) {
+            addRandomQuestionToQuestionList(javaQuestionService, examQuestions);
+            addRandomQuestionToQuestionList(mathQuestionService, examQuestions);
+        }
 
-        return questionList;
+        return examQuestions;
     }
 
     private void addRandomQuestionToQuestionList(final QuestionService questionService,
-                                                 final List<Question> questionList,
-                                                 int amount) {
-        while (questionList.size() < amount) {
+                                                 final List<Question> examQuestions
+    ) {
             Question question = questionService.getRandomQuestion();
-            if (!questionList.contains(question)) {
-                questionList.add(question);
+            if (!examQuestions.contains(question)) {
+                examQuestions.add(question);
             }
-        }
     }
 
 }
