@@ -16,4 +16,6 @@ public interface QuestionService {
 
     Question getRandomQuestion();
 
+    int size();
+
 }

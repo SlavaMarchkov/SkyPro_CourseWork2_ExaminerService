@@ -35,4 +35,4 @@ GET http://localhost:8080/exam/java/add?question=QuestionText10&answer=QuestionA
 GET http://localhost:8080/exam/java/remove?question=QuestionText2&answer=QuestionAnswer2”
 
 ### Получить нужное количество вопросов
-GET http://localhost:8080/exam/get
+GET http://localhost:8080/exam/get/{{amount}}
