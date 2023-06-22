@@ -35,10 +35,7 @@ public class Question {
 
     @Override
     public String toString() {
-        return "Question{" +
-                "question='" + question + '\'' +
-                ", answer='" + answer + '\'' +
-                '}';
+        return String.format("Вопрос: %s, Ответ: %s", question, answer);
     }
 
 }

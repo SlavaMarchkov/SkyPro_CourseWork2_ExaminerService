@@ -35,4 +35,4 @@ GET http://localhost:8080/exam/math/add?question=log(2)&answer=8
 GET http://localhost:8080/exam/math/remove?question=55 \  55&answer=110
 
 ### Получить нужное количество вопросов
-GET http://localhost:8080/exam/get
+GET http://localhost:8080/exam/get/{{amount}}
